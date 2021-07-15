@@ -10,6 +10,7 @@
 
 #include "CharacterBase.h"
 
+
 #include "EnemyCharacterBase.generated.h"
 
 UCLASS()
@@ -35,6 +36,16 @@ public:
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
 protected:
+	
+	virtual void BeginPlay() override;
 	virtual void Die() override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="EnemyCharacter|Grenade")
+	TSubclassOf<class AGrenade> GrenadeClass;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="EnemyCharacter|Grenade")
+	FName GrenadeSocketName;
+	UPROPERTY(BlueprintReadOnly, Category="EnemyCharacter|Grenade")
+	class AGrenade* SpawnedGrenade;
+	UFUNCTION(BlueprintCallable)
+	void SpawnGrenade();
 };

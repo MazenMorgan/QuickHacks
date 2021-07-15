@@ -11,6 +11,7 @@
 #include "Abilities/AttributeSets/GenericAttributeSet.h"
 #include "Abilities/GenericGameplayAbility.h"
 #include <GameplayEffectTypes.h>
+#include "Actors/Grenade.h"
 
 // Sets default values
 AEnemyCharacterBase::AEnemyCharacterBase()
@@ -45,6 +46,13 @@ AEnemyCharacterBase::AEnemyCharacterBase()
 
 }
 
+void AEnemyCharacterBase::BeginPlay()
+{
+	Super::BeginPlay();
+
+	SpawnGrenade();
+}
+
 void AEnemyCharacterBase::Die()
 {
 	Super::Die();
@@ -53,5 +61,18 @@ void AEnemyCharacterBase::Die()
 	GetCapsuleComponent()->SetCollisionProfileName("Ragdoll");
 	GetMesh()->SetCollisionProfileName("Ragdoll");
 	GetMesh()->SetSimulatePhysics(true);
-	
+}
+
+void AEnemyCharacterBase::SpawnGrenade()
+{
+	if(GrenadeClass)
+	{		
+		FActorSpawnParameters SpawnParameters;
+		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+		SpawnedGrenade = GetWorld()->SpawnActor<AGrenade>(GrenadeClass, GetActorLocation(), GetActorRotation(), SpawnParameters);
+		if(SpawnedGrenade)
+		{
+			SpawnedGrenade->AttachGrenadeToSocket(GetMesh(), GrenadeSocketName);
+		}
+	}
 }
