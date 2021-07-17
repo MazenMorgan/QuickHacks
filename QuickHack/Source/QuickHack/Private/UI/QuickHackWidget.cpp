@@ -5,8 +5,12 @@
 #include "Components/HorizontalBox.h"
 
 
-void UQuickHackWidget::HandleRAMOnPanelHover(int32 RAMCost)
+void UQuickHackWidget::HandleRAMOnPanelHover(int32 RAMCost, int32 CurrentRAM, int32 MaxRAM)
 {
+	
+	SetChidlrenLengthBasedOnCurrentRAM(CurrentRAM);
+	SetUsedChildren(CurrentRAM, MaxRAM);
+	
 	if(ChildrenLength <= 0)
 	{
 		return;

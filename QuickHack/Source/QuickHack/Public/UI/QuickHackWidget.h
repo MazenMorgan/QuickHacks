@@ -25,10 +25,8 @@ protected:
 	int32 UsedChildrenLength = 0;
 
 	UFUNCTION(BlueprintCallable)
-	void HandleRAMOnPanelHover(int32 RAMCost);
-	UFUNCTION(BlueprintCallable)
+	void HandleRAMOnPanelHover(int32 RAMCost, int32 CurrentRAM, int32 MaxRAM);
 	void SetChidlrenLengthBasedOnCurrentRAM(int32 CurrentRAM);
-	UFUNCTION(BlueprintCallable)
 	void SetUsedChildren(int32 CurrentRAM, int32 MaxRAM);
 
 	UFUNCTION(BlueprintImplementableEvent)

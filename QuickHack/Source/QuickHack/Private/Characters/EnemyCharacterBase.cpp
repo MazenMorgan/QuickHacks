@@ -49,7 +49,6 @@ AEnemyCharacterBase::AEnemyCharacterBase()
 void AEnemyCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
-
 	SpawnGrenade();
 }
 
