@@ -10,6 +10,8 @@
 #include "CharacterBase.generated.h"
 
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnTagAquiredOrRemoved, bool, bTagAquired, FGameplayTag, GameplayTag);
+
 class AAIController;
 
 UCLASS()
@@ -23,7 +25,7 @@ class QUICKHACK_API ACharacterBase : public ACharacter, public IAbilitySystemInt
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ability", meta = (AllowPrivateAccess = "true"))
 	class UGenericAttributeSet* Attributes;
-	
+	 
 public:
 	// Sets default values for this character's properties
 	ACharacterBase();
@@ -32,7 +34,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	virtual void PreInitializeComponents() override;
-	
+
+	UPROPERTY(BlueprintAssignable)
+	FOnTagAquiredOrRemoved OnTagAquiredOrRemoved;
 	virtual void Die();
 	
 public:	

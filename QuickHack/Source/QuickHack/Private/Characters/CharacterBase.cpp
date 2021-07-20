@@ -218,6 +218,7 @@ void ACharacterBase::AddGameplayTag(FGameplayTag& TagToAdd)
 	{
 		AbilitySystemComponent->AddLooseGameplayTag(TagToAdd);
 		AbilitySystemComponent->TagContainer.AddTag(TagToAdd);
+		OnTagAquiredOrRemoved.Broadcast(true, TagToAdd);
 	}
 }  
 
@@ -228,6 +229,7 @@ void ACharacterBase::RemoveGameplayTag(FGameplayTag& TagToRemove)
 	{
 		AbilitySystemComponent->RemoveLooseGameplayTag(TagToRemove);
 		AbilitySystemComponent->TagContainer.RemoveTag(TagToRemove);
+		OnTagAquiredOrRemoved.Broadcast(false, TagToRemove);
 	}
 }
 
