@@ -62,6 +62,7 @@ void ACharacterBase::Die()
 	{
 		//AIC->GetBrainComponent()->StopLogic("Dead");
 	}
+	BP_Die();
 }
 
 // Called every frame

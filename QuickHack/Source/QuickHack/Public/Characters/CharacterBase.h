@@ -38,6 +38,9 @@ protected:
 	UPROPERTY(BlueprintAssignable)
 	FOnTagAquiredOrRemoved OnTagAquiredOrRemoved;
 	virtual void Die();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void BP_Die();
 	
 public:	
 	// Called every frame
